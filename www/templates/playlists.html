@@ -1,4 +1,4 @@
-<ion-view view-title="Playlists" >
+<ion-view view-title="Sales Orders" >
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
@@ -19,13 +19,19 @@
       </div>
       </ion-item>
     </ion-list>
-    <div id="chat_tab">
+    <!-- <div id="chat_tab">
       	<div id="chat_button">Chat tab <i class="icon ion-chatboxes"></i></div>
-    </div>
+    </div> -->
 
     <div class="chat-box">
     <input type="checkbox" />
     <label data-expanded="Close Chatbox" data-collapsed="Open Chatbox"></label>
-    <div class="chat-box-content"></div>
+    <div class="chat-box-content">
+      <form id="post">
+          <div id="messages"></div>
+          <input type="text" id="question"></input>
+          <input type="submit" value="submit"></input>
+      </form>
+    </div>
   </ion-content>
 </ion-view>

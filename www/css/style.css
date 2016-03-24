@@ -26,7 +26,7 @@
 .chat-box {
   font:normal normal 11px/1.4 Tahoma,Verdana,Sans-Serif;
   color:#333;
-  width:200px; /* Chatbox width */
+  width:250px; /* Chatbox width */
   border:1px solid #344150;
   border-bottom:none;
   background-color:white;
@@ -81,3 +81,36 @@
 .chat-box > input[type="checkbox"]:checked + label:before {content:attr(data-expanded)}
 .chat-box > input[type="checkbox"]:checked ~ .chat-box-content {display:block}
 
+#messages{
+  height: 200px;
+  overflow-y: scroll;
+}
+
+#question{
+  border: 1px solid black;
+  width: 100%;
+}
+
+.questions span{
+  background-color:gray;
+  color: white;
+  padding: 4px;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+.questions,.answers{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+.answers span{
+  background-color:#0071BC;
+  color: white;
+  padding: 4px;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 25px;
+  margin-left: 100px;
+}

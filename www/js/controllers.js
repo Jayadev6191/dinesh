@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -41,21 +41,45 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'sales_order 1', id: 1 },
-    { title: 'sales_order 2', id: 2 },
-    { title: 'sales_order 3', id: 3 },
-    { title: 'sales_order 4', id: 4 },
-    { title: 'sales_order 5', id: 5 }
-  ];
+.controller('PlaylistsCtrl', function($scope, $http) {
 
-  $('#chat_button').on('click',function(){
-    alert("hello");
-    $( "#chat_box" ).slideUp( "slow", function() {
-      // Animation complete.
-      $(this).css('display','block');
+  var chat_bot;
+
+  $http.get('../data/questions.json').then(function(data){
+    chat_bot = data.data;
+    console.log(chat_bot);
+
+    $scope.playlists = [
+      { title: 'sales_order 1', id: 1 },
+      { title: 'sales_order 2', id: 2 },
+      { title: 'sales_order 3', id: 3 },
+      { title: 'sales_order 4', id: 4 },
+      { title: 'sales_order 5', id: 5 }
+    ];
+
+
+
+    $('#chat_button').on('click',function(){
+      alert("hello");
+      $( "#chat_box" ).slideUp( "slow", function() {
+        // Animation complete.
+        $(this).css('display','block');
+      });
+
     });
+
+    $("#post").on('submit',function(){
+        console.log($('#question').val());
+        $('#messages').append('<div class="questions"><span>'+$('#question').val()+'</span></div>');
+        if(chat_bot[$('#question').val()]!==undefined){
+          $('#messages').append('<div class="answers"><span>'+chat_bot[$('#question').val()]+'</span></div>');
+        }
+        $('#question').val('')
+    });
+
+
+  },function(err){
+    console.log(err);
   });
 
 })
