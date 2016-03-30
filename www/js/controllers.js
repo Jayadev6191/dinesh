@@ -70,6 +70,26 @@ angular.module('starter.controllers', [])
           }
         }
     });
+
+    /*Ajax call*/
+
+    // $http.get('../data/questions.json').then(function(data){
+    //   chat_bot = data.data;
+    //   console.log(chat_bot);
+
+    //   $('#chat_button').on('click',function(){
+    //     alert("hello");
+    //     $( "#chat_box" ).slideUp( "slow", function() {
+    //       // Animation complete.
+    //       $(this).css('display','block');
+    //     });
+
+    //   });
+
+
+    // },function(err){
+    //   console.log(err);
+    // });
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
