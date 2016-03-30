@@ -44,44 +44,32 @@ angular.module('starter.controllers', [])
 .controller('PlaylistsCtrl', function($scope, $http) {
 
   var chat_bot;
+  var obj;
 
-  $http.get('../data/questions.json').then(function(data){
-    chat_bot = data.data;
-    console.log(chat_bot);
-
-    $scope.playlists = [
-      { title: 'sales_order 1', id: 1 },
-      { title: 'sales_order 2', id: 2 },
-      { title: 'sales_order 3', id: 3 },
-      { title: 'sales_order 4', id: 4 },
-      { title: 'sales_order 5', id: 5 }
+  $scope.playlists = [
+      { title: 'sales_order 1', id: 1 }
     ];
 
+    $('#enter_task').on('submit',function(e){
+        e.preventDefault();
+        console.log($('#task').val());
 
+        var value=$('#task').val();
 
-    $('#chat_button').on('click',function(){
-      alert("hello");
-      $( "#chat_box" ).slideUp( "slow", function() {
-        // Animation complete.
-        $(this).css('display','block');
-      });
+        if(value=="create a sales order"){
+          console.log("true");
 
-    });
-
-    $("#post").on('submit',function(){
-        console.log($('#question').val());
-        $('#messages').append('<div class="questions"><span>'+$('#question').val()+'</span></div>');
-        if(chat_bot[$('#question').val()]!==undefined){
-          $('#messages').append('<div class="answers"><span>'+chat_bot[$('#question').val()]+'</span></div>');
+          if($scope.playlists.length === 0){
+            obj = { title: 'sales_order 1', id: 1 };
+            $scope.playlists.push(obj);
+          }else{
+            console.log($scope.playlists.length);
+            var index = $scope.playlists.length + 1;
+            obj = { title: 'sales_order'+ index, id: index };
+            $scope.playlists.push(obj);
+          }
         }
-        $('#question').val('')
     });
-
-
-  },function(err){
-    console.log(err);
-  });
-
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
